@@ -69,4 +69,17 @@ class ToDoController extends CI_Controller {
         $this->load->view('todoList', $bagOfValues);
     }
 
+    public function allToDoActionsJSON() {
+
+        $this->load->model('ToDoModel', 'tdm');
+
+        $toDoActions = $this->tdm->getAllToDosdb();
+
+        echo json_encode($toDoActions);
+    }
+
+    public function indexJSON() {
+        $this->load->view('todoListJSON');
+    }
+
 }
