@@ -7,14 +7,16 @@
     <body>
         <div class="container">
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-12">
                     <h3>ToDo List</h3>
                     <?php
                     if (count($toDoActions) > 0) {
                         echo "<ul>";
                         foreach ($toDoActions as $x) {
-
-                            echo "<li>" . $x->getUserId() . " - " . $x->getActionTitle() . "</li>";
+                            echo "<li>" . $x->getUserId() . " - " . $x->getActionTitle() . " - " . $x->getId();
+                            echo "<br>";
+                            echo '<a href="/AdvancedServerSideTutorial/index.php/ToDoController/updateView?id=' . $x->getId() . '"> Update Action</a>';
+                            echo '<a style="color:red" href="/AdvancedServerSideTutorial/index.php/ToDoController/deleteAction?id=' . $x->getId() . '"> Delete Action</a></li>';
                             echo "<br>";
                         }
                         echo "</ul>";

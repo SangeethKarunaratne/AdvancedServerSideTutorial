@@ -12,16 +12,55 @@ class ToDoController extends CI_Controller {
 
         $this->load->model('ToDoModel', 'tdm');
 
-        $this->tdm->addAction($actionTitle);
+        $this->tdm->addActiondb($actionTitle);
 
         $this->load->view('todo');
+    }
+
+    public function updateView() {
+
+        $id = $this->input->get('id');
+
+        $bagOfValues = array(
+            'id' => $id
+        );
+
+        $this->load->view('updateTodo', $bagOfValues);
+    }
+
+    public function updateAction() {
+
+        $id = $this->input->get('id');
+
+        $actionTitle = $this->input->post('action');
+
+        $this->load->model('ToDoModel', 'tdm');
+
+        $this->tdm->updateActiondb($id, $actionTitle);
+
+        $this->load->helper('url');
+
+        redirect('/ToDoController/allToDoActions');
+    }
+
+    public function deleteAction() {
+
+        $id = $this->input->get('id');
+
+        $this->load->model('ToDoModel', 'tdm');
+
+        $this->tdm->deleteActiondb($id);
+
+        $this->load->helper('url');
+
+        redirect('/ToDoController/allToDoActions');
     }
 
     public function allToDoActions() {
 
         $this->load->model('ToDoModel', 'tdm');
 
-        $toDoActions = $this->tdm->getAllToDos();
+        $toDoActions = $this->tdm->getAllToDosdb();
 
         $bagOfValues = array(
             'toDoActions' => $toDoActions
