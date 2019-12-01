@@ -8,7 +8,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-3">
-                    <h3>All Movies</h3>
+                    <h3>All sMovies</h3>
                     <?php
                     echo "<ul>";
                     foreach ($movies as $x) {
